@@ -1,9 +1,6 @@
 package co.winish.di;
 
-import co.winish.di.controllers.ConstructorInjectedController;
-import co.winish.di.controllers.MyController;
-import co.winish.di.controllers.PropertyInjectedController;
-import co.winish.di.controllers.SetterInjectedController;
+import co.winish.di.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +10,12 @@ public class DiApplication {
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(DiApplication.class, args);
+
+
+        System.out.println("### I18N Example ###");
+        I18NController i18NController = (I18NController) ctx.getBean("i18NController");
+        System.out.println(i18NController.sayHello());
+
 
         System.out.println("### Primary bean ###");
         MyController myController = (MyController) ctx.getBean("myController");
