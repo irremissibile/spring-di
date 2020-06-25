@@ -11,6 +11,10 @@ public class DiApplication {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(DiApplication.class, args);
 
+        System.out.println("### Music Example ###");
+        MusicController musicController = (MusicController) ctx.getBean("musicController");
+        System.out.println(musicController.getBestGenre());
+
 
         System.out.println("### I18N Example ###");
         I18NController i18NController = (I18NController) ctx.getBean("i18NController");
