@@ -2,6 +2,7 @@ package co.winish.di;
 
 import co.winish.di.controllers.*;
 import co.winish.di.examples.FakeDataSource;
+import co.winish.di.examples.SecondFakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +17,11 @@ public class DiApplication {
         System.out.println(fakeDataSource.getUser());
         System.out.println(fakeDataSource.getPassword());
         System.out.println(fakeDataSource.getUrl());
+
+        SecondFakeDataSource secondFakeDataSource = ctx.getBean(SecondFakeDataSource.class);
+        System.out.println(secondFakeDataSource.getUser());
+        System.out.println(secondFakeDataSource.getPassword());
+        System.out.println(secondFakeDataSource.getUrl());
 
         /*
         System.out.println("### Music Example ###");

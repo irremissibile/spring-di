@@ -1,22 +1,35 @@
 package co.winish.di.config;
 
 import co.winish.di.examples.FakeDataSource;
+import co.winish.di.examples.SecondFakeDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@PropertySource("classpath:datasource.properties")
+//@PropertySource({"classpath:datasource.properties", "classpath:seconddatasource.properties"})
+@PropertySources({
+        @PropertySource("classpath:datasource.properties"),
+        @PropertySource("classpath:seconddatasource.properties")
+})
 public class PropertyConfiguration {
 
-    @Value("${user}")
+    @Value("${di.username}")
     String user;
-    @Value("${password}")
+    @Value("${fake.password}")
     String password;
-    @Value("${dburl}")
+    @Value("${fake.dburl}")
     String dburl;
+
+    @Value("${second.user}")
+    String secondUser;
+    @Value("${second.password}")
+    String secondPassword;
+    @Value("${second.dburl}")
+    String secondUrl;
 
     @Bean
     public FakeDataSource fakeDataSource() {
@@ -25,6 +38,15 @@ public class PropertyConfiguration {
         fakeDataSource.setPassword(password);
         fakeDataSource.setUrl(dburl);
         return fakeDataSource;
+    }
+
+    @Bean
+    public SecondFakeDataSource secondFakeDataSource() {
+        SecondFakeDataSource secondFakeDataSource = new SecondFakeDataSource();
+        secondFakeDataSource.setUser(secondUser);
+        secondFakeDataSource.setPassword(secondPassword);
+        secondFakeDataSource.setUrl(secondUrl);
+        return secondFakeDataSource;
     }
 
     @Bean
