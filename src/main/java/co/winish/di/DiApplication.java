@@ -1,6 +1,7 @@
 package co.winish.di;
 
 import co.winish.di.controllers.*;
+import co.winish.di.examples.FakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +12,12 @@ public class DiApplication {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(DiApplication.class, args);
 
+        FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
+        System.out.println(fakeDataSource.getUser());
+        System.out.println(fakeDataSource.getPassword());
+        System.out.println(fakeDataSource.getUrl());
+
+        /*
         System.out.println("### Music Example ###");
         MusicController musicController = (MusicController) ctx.getBean("musicController");
         System.out.println(musicController.getBestGenre());
@@ -36,6 +43,6 @@ public class DiApplication {
         System.out.println("### Constructor ###");
         ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
         System.out.println(constructorInjectedController.sayHello());
+        */
     }
-
 }
